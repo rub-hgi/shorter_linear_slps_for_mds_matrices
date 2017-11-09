@@ -1,0 +1,25 @@
+# Generated with slp_heuristic, XOR Count 24
+t0 = x0 + x11
+y4 = x1 + t0
+y12 = x12 + t0
+t3 = x1 + x12
+y5 = x2 + t3
+y13 = x13 + t3
+t6 = x2 + x13
+y6 = x3 + t6
+y14 = x14 + t6
+t9 = x3 + x14
+y7 = x4 + t9
+y15 = x15 + t9
+t12 = x4 + x15
+y0 = x5 + t12
+y8 = x8 + t12
+t15 = x5 + x8
+y1 = x6 + t15
+y9 = x9 + t15
+t18 = x6 + x9
+y2 = x7 + t18
+y10 = x10 + t18
+t21 = x7 + x10
+y3 = x0 + t21
+y11 = t0 + y3

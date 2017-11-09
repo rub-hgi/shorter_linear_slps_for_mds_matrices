@@ -1,0 +1,38 @@
+#define DIM 32
+#define SBOX_SIZE 4
+#define NUM_SBOXES (DIM/SBOX_SIZE)
+
+uint64_t mds[] = {
+    0xa2564b1c,
+    0x51e329c6,
+    0xec7d1863,
+    0x76fac43d,
+    0x2a65b4c1,
+    0x153e926c,
+    0xced78136,
+    0x67af4cd3,
+    0x56a21c4b,
+    0xe351c629,
+    0x7dec6318,
+    0xfa763dc4,
+    0x652ac1b4,
+    0x3e156c92,
+    0xd7ce3681,
+    0xaf67d34c,
+    0x4b1ca256,
+    0x29c651e3,
+    0x1863ec7d,
+    0xc43d76fa,
+    0xb4c12a65,
+    0x926c153e,
+    0x8136ced7,
+    0x4cd367af,
+    0x1c4b56a2,
+    0xc629e351,
+    0x63187dec,
+    0x3dc4fa76,
+    0xc1b4652a,
+    0x6c923e15,
+    0x3681d7ce,
+    0xd34caf67
+};
