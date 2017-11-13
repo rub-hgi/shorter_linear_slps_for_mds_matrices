@@ -1,3 +1,17 @@
+/* November 2017
+This code is a modified version of code available at
+
+  http://www.imada.sdu.dk/~joan/xor/Improved2.cc
+
+The only differences are:
+  - Minor changes in formatting.
+  - Input is now read from stdin instead of from a fixed file.
+  - The code now stores and keeps track of a string representation of the SLP
+    in the variable called Program.
+  - The SLP is printed at the end from this variable.
+*/
+
+
 // Improved.cc
 // version August 31, 2008
 

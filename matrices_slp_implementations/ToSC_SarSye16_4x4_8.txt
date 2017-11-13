@@ -1,4 +1,4 @@
-# Generated with slp_heuristics, XOR Count 107
+# Generated with slp_heuristic, XOR Count 107
 t0 = x0 + x17
 t1 = x23 + x24
 t2 = x0 + x8
