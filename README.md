@@ -1,6 +1,6 @@
 # Shorter Linear SLPs for MDS Matrices
 
-SLPs for our ToSC Volume 2017 Issue 3 paper 'Shorter Linear Straight-Line Programs for MDS Matrices'
+SLPs for our ToSC Volume 2017 Issue 4 paper 'Shorter Linear Straight-Line Programs for MDS Matrices'
 
 - The makefile compiles the slp_heuristic C++ program.
 - The makefile compiles for each matrix header in the 'paar_header' folder
