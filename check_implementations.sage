@@ -9337,6 +9337,26 @@ y0 = x10 + t21
 y8 = t6 + y0
 """),
 
+(SKINNY, """
+# Generated with slp_heuristic, XOR Count 12
+y4 = x0
+y5 = x1
+y6 = x2
+y7 = x3
+y8 = x4 + x8
+y9 = x5 + x9
+y10 = x6 + x10
+y11 = x7 + x11
+y12 = x0 + x8
+y13 = x1 + x9
+y14 = x2 + x10
+y15 = x3 + x11
+y0 = x12 + y12
+y1 = x13 + y13
+y2 = x14 + y14
+y3 = x15 + y15
+"""),
+
 (SmallScale_AES, """
 # Generated with slp_heuristic, XOR Count 47
 t0 = x3 + x7

@@ -444,6 +444,29 @@ AES_field = GF(2^8, name="a", modulus=PolynomialRing(GF(2), name="x")("x^8 + x^4
 AES = circ(map(AES_field.fetch_int, [0x2, 0x3, 0x1, 0x1]))
 SmallScale_AES = circ(map(F_13.fetch_int, [0x2, 0x3, 0x1, 0x1]))
 
+def ARIA():
+    def ll(x):
+        x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15 = x
+        y0  = x3 + x4 + x6 + x8  + x9  + x13 + x14
+        y1  = x2 + x5 + x7 + x8  + x9  + x12 + x15
+        y2  = x1 + x4 + x6 + x10 + x11 + x12 + x15
+        y3  = x0 + x5 + x7 + x10 + x11 + x13 + x14
+        y4  = x0 + x2 + x5 + x8  + x11 + x14 + x15
+        y5  = x1 + x3 + x4 + x9  + x10 + x14 + x15
+        y6  = x0 + x2 + x7 + x9  + x10 + x12 + x13
+        y7  = x1 + x3 + x6 + x8  + x11 + x12 + x13
+        y8  = x0 + x1 + x4 + x7  + x10 + x13 + x15
+        y9  = x0 + x1 + x5 + x6  + x11 + x12 + x14
+        y10 = x2 + x3 + x5 + x6  + x8  + x13 + x15
+        y11 = x2 + x3 + x4 + x7  + x9  + x12 + x14
+        y12 = x1 + x2 + x6 + x7  + x9  + x11 + x12
+        y13 = x0 + x3 + x6 + x7  + x8  + x10 + x13
+        y14 = x0 + x3 + x4 + x5  + x9  + x11 + x14
+        y15 = x1 + x2 + x4 + x5  + x8  + x10 + x15
+        return VectorSpace(GF(2), 16)([y0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15])
+    return matrix(GF(2^8), [ll(Integer(1 << i).digits(base=2, padto=16)) for i in range(16)])
+ARIA = ARIA()
+
 QARMA64_nul = matrix(GF(2), [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]])
 QARMA64_rho = matrix(GF(2), [[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0]])
 QARMA64_rhosq = QARMA64_rho * QARMA64_rho
