@@ -381,6 +381,34 @@ FSE_LiWang16_4x4_8_i = block_matrix(GF(2), 4, 4, [FSE_LiWang16_8_1  , FSE_LiWang
                                                  ,FSE_LiWang16_8_A_i, FSE_LiWang16_8_1  , FSE_LiWang16_8_C_i, FSE_LiWang16_8_B_i
                                                  ,FSE_LiWang16_8_B_i, FSE_LiWang16_8_C_i, FSE_LiWang16_8_1  , FSE_LiWang16_8_A_i
                                                  ,FSE_LiWang16_8_C_i, FSE_LiWang16_8_B_i, FSE_LiWang16_8_A_i, FSE_LiWang16_8_1])
+FSE_LiWang16_8_A_i_2 = matrix(GF(2), [[1,0,0,0,0,0,0,0]
+                                     ,[0,1,0,0,0,0,0,0]
+                                     ,[1,0,1,0,0,0,0,0]
+                                     ,[1,1,0,1,0,0,0,0]
+                                     ,[0,0,0,0,0,1,0,0]
+                                     ,[0,0,0,0,1,0,0,0]
+                                     ,[0,0,0,0,0,0,0,1]
+                                     ,[0,0,0,0,0,0,1,0]])
+FSE_LiWang16_8_B_i_2 = matrix(GF(2), [[0,0,0,0,0,0,1,1]
+                                     ,[1,0,0,0,0,0,0,0]
+                                     ,[0,0,0,0,0,0,1,0]
+                                     ,[0,0,1,0,0,0,0,1]
+                                     ,[0,1,0,1,0,0,0,0]
+                                     ,[1,0,0,1,0,0,0,0]
+                                     ,[0,0,0,0,0,1,0,0]
+                                     ,[0,0,0,0,1,0,0,0]])
+FSE_LiWang16_8_C_i_2 = matrix(GF(2), [[0,0,0,0,1,0,0,0]
+                                     ,[0,0,0,0,0,0,0,1]
+                                     ,[0,1,0,0,0,1,0,0]
+                                     ,[0,0,0,0,0,0,1,0]
+                                     ,[1,0,0,0,0,0,0,0]
+                                     ,[0,0,1,0,0,0,0,1]
+                                     ,[0,0,0,1,0,0,0,0]
+                                     ,[0,1,0,0,0,0,0,0]])
+FSE_LiWang16_4x4_8_i_2 = block_matrix(GF(2), 4, 4, [FSE_LiWang16_8_1    , FSE_LiWang16_8_A_i_2, FSE_LiWang16_8_B_i_2, FSE_LiWang16_8_C_i_2
+                                                   ,FSE_LiWang16_8_C_i_2, FSE_LiWang16_8_1    , FSE_LiWang16_8_A_i_2, FSE_LiWang16_8_B_i_2
+                                                   ,FSE_LiWang16_8_B_i_2, FSE_LiWang16_8_C_i_2, FSE_LiWang16_8_1    , FSE_LiWang16_8_A_i_2
+                                                   ,FSE_LiWang16_8_A_i_2, FSE_LiWang16_8_B_i_2, FSE_LiWang16_8_C_i_2, FSE_LiWang16_8_1])
 
 ToSC_SarSye16_4x4_4_field = GF(2^4, name="a", modulus=PolynomialRing(GF(2), name="x")("x^4 + x^3 + 1"))
 ToSC_SarSye16_4x4_8_field = GF(2^8, name="a", modulus=PolynomialRing(GF(2), name="x")("x^8 + x^7 + x^6 + x + 1"))
@@ -641,6 +669,7 @@ matrices_4x4_8 = {
 matrices_i_4x4_8 = {
     "FSE_SKOP15_i_4x4_8" : FSE_SKOP15_4x4_8_i,
     "FSE_LiWang16_i_4x4_8" : FSE_LiWang16_4x4_8_i,
+    "FSE_LiWang16_i_4x4_8_2" : FSE_LiWang16_4x4_8_i_2,
     "ToSC_SarSye16_i_4x4_8" : ToSC_SarSye16_4x4_8_i,
     "ePrint_JeaPeySim_i_4x4_8" : ePrint_JeaPeySim_4x4_8_i,
     "Anubis" : Anubis,
