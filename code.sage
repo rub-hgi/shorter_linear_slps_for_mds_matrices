@@ -422,7 +422,7 @@ ToSC_SarSye16_4x4_8_i = matrix(ToSC_SarSye16_4x4_8_i_field, map(lambda x: map(To
 
 ACISP_SarSye17_8x8_4_field = GF(2^4, name="a", modulus=PolynomialRing(GF(2), name="x")("x^4 + x + 1"))
 ACISP_SarSye17_8x8_8_field = GF(2^8, name="a", modulus=PolynomialRing(GF(2), name="x")("x^8 + x^7 + x^6 + x + 1"))
-ACISP_SarSye17_8x8_4 = toeplitz(map(ACISP_SarSye17_8x8_4_field, ["a", "1", "a^4", "1", "a^5", "a^14", "a^7", "a^8", "a^3", "a^6", "a^14", "a^4", "a^8", "a^6", "a^3"]))
+ACISP_SarSye17_8x8_4 = toeplitz(map(ACISP_SarSye17_8x8_4_field, ["a", "1", "a^4", "1", "a^5", "a^14", "a^7", "a^8", "a^3", "a^6", "a^14", "a^14", "a^8", "a^6", "a^3"]))
 ACISP_SarSye17_8x8_8 = toeplitz(map(ACISP_SarSye17_8x8_8_field, ["1", "1", "a", "a^253", "1", "a^253", "a^252", "a^157", "a^158", "a^253", "a^254", "a", "a^254", "a^2", "a"]))
 
 ePrint_JeaPeySim_field = GF(2^4, name="a", modulus=PolynomialRing(GF(2), name="x")("x^4 + x + 1"))
