@@ -69,16 +69,16 @@ using namespace std;
 const int MaxBaseSize=1000;
 const bool PRINTROWS=true;
 
-int NumInputs;
-int NumTargets;
-int XorCount;
+unsigned int NumInputs;
+unsigned int NumTargets;
+unsigned int XorCount;
 long long int Target[MaxBaseSize];
 int Dist[MaxBaseSize]; //distance from current base to Target[i]
 int NDist[MaxBaseSize]; //what Dist would be if NewBase was added
 long long int Base[MaxBaseSize];
 string Program[MaxBaseSize];
-int BaseSize;
-int TargetsFound;
+unsigned int BaseSize;
+unsigned int TargetsFound;
 
 void InitBase();
 void ReadTargetMatrix();
@@ -86,16 +86,16 @@ bool is_target(long long int x);
 bool is_base(long long int x);
 int NewDistance(int u); //calculates the distance from the base to Target[u]
 int TotalDistance(); //returns the sum of distances to targets
-bool reachable(long long int T, int K, int S);
+bool reachable(long long int T, unsigned int K, int S);
 bool EasyMove(); //if any two bases add up to a target, pick them
 void PickNewBaseElement();
 void binprint(long long int x); //outputs last NumInputs bits of x
 
 int main(int argc, char *argv[]) {
-    int NumMatrices;
+    unsigned int NumMatrices;
 
     cin >> NumMatrices;
-    for (int i = 0; i < NumMatrices; i++) {
+    for (unsigned int i = 0; i < NumMatrices; i++) {
         ReadTargetMatrix();
         InitBase();
         XorCount = 0;
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
         }
         cout << "SLP Heuristic XorCount: " << XorCount << endl;
         cout << "SLP: " << endl << endl;
-        for (int j = 0; j < XorCount; j++) {
+        for (unsigned int j = 0; j < XorCount; j++) {
             cout << Program[NumInputs + j] << endl;
         }
     }
@@ -118,12 +118,12 @@ void InitBase() {
     TargetsFound = 0;
     Base[0] = 1;
     Program[0] = "x0";
-    for (int i = 1; i < NumInputs; i++) {
+    for (unsigned int i = 1; i < NumInputs; i++) {
         Base[i] = 2*Base[i-1];
         Program[i] = "x" + to_string(i);
     }
     BaseSize = NumInputs; //initial base is just the xi's
-    for (int i = 0; i < NumTargets; i++) {
+    for (unsigned int i = 0; i < NumTargets; i++) {
         if (Dist[i] == 0) {
             TargetsFound++;
         }
@@ -133,7 +133,7 @@ void InitBase() {
 int TotalDistance() { //returns the sum of distances to targets
     int D = 0;
     int t;
-    for (int i = 0; i < NumTargets; i++) {
+    for (unsigned int i = 0; i < NumTargets; i++) {
         t = NewDistance(i);
         NDist[i] = t;
         D = D + t;
@@ -148,7 +148,7 @@ bool EasyMove() {
     bool foundone = false;
 
     //see if anything in the distance vector is 1
-    for(int i = 0; i < NumTargets; i++) {
+    for(unsigned int i = 0; i < NumTargets; i++) {
         if (Dist[i] == 1) {
             foundone = true;
             t = i;
@@ -160,15 +160,15 @@ bool EasyMove() {
     }
     //update Dist array
     NewBase = Target[t];
-    for (int u = 0; u < NumTargets; u++) {
+    for (unsigned int u = 0; u < NumTargets; u++) {
         Dist[u] = NewDistance(u);
     }
     //update Base with NewBase
     Base[BaseSize] = NewBase;
     //find which lines in Base caused this
     string a,b;
-    for (int i = 0; i < BaseSize; i++) {
-        for (int j = i + 1; j < BaseSize; j++) {
+    for (unsigned int i = 0; i < BaseSize; i++) {
+        for (unsigned int j = i + 1; j < BaseSize; j++) {
             if ((Base[i] ^ Base[j]) == Target[t]) {
                 a = Program[i].substr(0, Program[i].find(" "));
                 b = Program[j].substr(0, Program[j].find(" "));
@@ -186,18 +186,18 @@ bool EasyMove() {
 // PickNewBaseElement is only called when there are no 1's in Dist[]
 void PickNewBaseElement() {
     int MinDistance;
-    long long int TheBest;
+    unsigned long long int TheBest = 0;
     int ThisDist;
     int ThisNorm, OldNorm;
-    int besti,bestj, d;
+    int besti = 0, bestj = 0, d = 0;
     bool easytarget;
     int BestDist[MaxBaseSize];
 
     MinDistance = BaseSize*NumTargets; //i.e. something big
     OldNorm = 0; //i.e. something small
     //try all pairs of bases
-    for (int i = 0; i < BaseSize - 1; i++) {
-        for (int j = i+1; j < BaseSize; j++) {
+    for (unsigned int i = 0; i < BaseSize - 1; i++) {
+        for (unsigned int j = i+1; j < BaseSize; j++) {
             NewBase = Base[i] ^ Base[j];
             //sanity check
             if (NewBase == 0) { cout << "a base is 0, should't happen " << endl; exit(0); }
@@ -218,7 +218,7 @@ void PickNewBaseElement() {
             if (ThisDist <= MinDistance) {
                 //calculate Norm
                 ThisNorm = 0;
-                for (int k = 0; k < NumTargets; k++) {
+                for (unsigned int k = 0; k < NumTargets; k++) {
                     d = NDist[k];
                     ThisNorm = ThisNorm + d*d;
                 }
@@ -227,7 +227,7 @@ void PickNewBaseElement() {
                     besti = i;
                     bestj = j;
                     TheBest = NewBase;
-                    for (int uu = 0; uu < NumTargets; uu++) {
+                    for (unsigned int uu = 0; uu < NumTargets; uu++) {
                         BestDist[uu] = NDist[uu];
                     }
                     MinDistance = ThisDist;
@@ -241,7 +241,7 @@ void PickNewBaseElement() {
     }
     //update Dist array
     NewBase = TheBest;
-    for (int i = 0; i < NumTargets; i++) {
+    for (unsigned int i = 0; i < NumTargets; i++) {
         Dist[i] = BestDist[i];
     }
     //update Base with TheBest
@@ -259,7 +259,7 @@ void PickNewBaseElement() {
 
 void binprint(long long int x) { //outputs last NumInputs bits of x
     long long int t = x;
-    for (int i = 0; i < NumInputs; i++) {
+    for (unsigned int i = 0; i < NumInputs; i++) {
         if (t%2) {
             cout << "1 ";
         }
@@ -280,11 +280,11 @@ void ReadTargetMatrix() {
     }
 
     int bit;
-    for (int i = 0; i < NumTargets; i++) { //read row i
+    for (unsigned int i = 0; i < NumTargets; i++) { //read row i
         long long int PowerOfTwo  = 1;
         Target[i] = 0;
         Dist[i] = -1; //initial distance from Target[i] is Hamming weight - 1
-        for (int j = 0; j < NumInputs; j++) {
+        for (unsigned int j = 0; j < NumInputs; j++) {
             cin >> bit;
             if (bit) {
                 Dist[i]++;
@@ -297,7 +297,7 @@ void ReadTargetMatrix() {
 
 bool is_target(long long int x)
 {
-    for (int i = 0; i < NumTargets; i++) {
+    for (unsigned int i = 0; i < NumTargets; i++) {
         if (x == Target[i]) {
             return true;
         }
@@ -312,7 +312,7 @@ bool is_base(long long int x) {
         exit(0);
     }
 
-    for (int i = 0; i < BaseSize; i++) {
+    for (unsigned int i = 0; i < BaseSize; i++) {
         if (x == Base[i]) {
             return true;
         }
@@ -351,7 +351,7 @@ int NewDistance(int u) {
 
 
 //return true if T is the sum of K elements among Base[S..BaseSize-1]
-bool reachable(long long int T, int K, int S) {
+bool reachable(long long int T, unsigned int K, int S) {
     if ((BaseSize-S) < K) {
         return false; //not enough base elements
     }
@@ -361,7 +361,7 @@ bool reachable(long long int T, int K, int S) {
     }
 
     if (K==1) {
-        for (int i=S; i < BaseSize; i++) if (T == Base[i]) {
+        for (unsigned int i=S; i < BaseSize; i++) if (T == Base[i]) {
             return true;
         }
         return false;

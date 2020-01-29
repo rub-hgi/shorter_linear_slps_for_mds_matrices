@@ -3,6 +3,8 @@
 ###############################################################################
 
 def cauchy(a, b):
+    a = list(a)
+    b = list(b)
     field = a[0].parent()
     rows = []
     for ai in a:
@@ -11,6 +13,8 @@ def cauchy(a, b):
 
 
 def vandermonde(a, b):
+    a = list(a)
+    b = list(b)
     field = a[0].parent()
     a_rows = []
     for ai in a:
@@ -24,6 +28,7 @@ def vandermonde(a, b):
 
 
 def hadamard(row):
+    row = list(row)
     field = row[0].parent()
     if len(row) == 4:
         a, b, c, d = row
@@ -46,6 +51,7 @@ def hadamard(row):
 
 
 def circ(row):
+    row = list(row)
     field = row[0].parent()
     if len(row) == 4:
         a, b, c, d = row
@@ -68,6 +74,7 @@ def circ(row):
 
 
 def toeplitz(row):
+    row = list(row)
     field = row[0].parent()
     if len(row) == 15:
         a, b, c, d, e, f, g, h, t, u, v, w, x, y, z = row
@@ -168,7 +175,7 @@ def matrix2columns(m, to_file=None):
 
 
 def columns2matrix(cols, dim=16):
-    columns = map(lambda x: Integer(x).digits(base=2, padto=dim)[::-1], cols)
+    columns = map(lambda x: Integer(list(x)).digits(base=2, padto=dim)[::-1], cols)
     return matrix(GF(2), columns).transpose()
 
 
@@ -281,8 +288,8 @@ def linopt(m, path_to_linopt_binary="./LinOpt", debug=False, nr_times=20000, sra
     if debug:
         print(slp_output)
 
-    counts = [line for line in slp_output.split('\n') if 'count' in line]
-    counts = [int(search(r'\d+',line).group()) for line in counts]
+    counts = [line for line in slp_output.split(b'\n') if b'count' in line]
+    counts = [int(search(rb'\d+',line).group()) for line in counts]
     counts.sort()
 
     return counts[0]
