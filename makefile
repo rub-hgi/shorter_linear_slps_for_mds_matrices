@@ -12,7 +12,7 @@ $(slpprograms): %: %.cpp
 	g++ -o $@ $< -std=c++11 -O3 -Wall
 
 clean:
-	${RM} paar_header/*_check_alg1 paar_header/*_check_alg2
+	${RM} matrices_paar_header/*_check_alg1 matrices_paar_header/*_check_alg2
 	${RM} $(slpprograms)
 
 .PHONY: clean
