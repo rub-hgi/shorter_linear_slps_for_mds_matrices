@@ -1,8 +1,8 @@
-matrices = $(wildcard paar_header/*.h)
+matrices = $(wildcard matrices_paar_header/*.h)
 targets = $(matrices:.h=_check)
-slpprograms = slp_heuristic LinOpt
+slpprograms = slp_heuristic # LinOpt
 
-all: slp_heuristic LinOpt $(targets)
+all: slp_heuristic $(targets) # LinOpt
 
 $(targets): %_check: paar.cpp  # $*.h
 	g++ $< -o $@_alg1 -O3 -Wall -std=c++11 -mpopcnt -D PAAR1 -include stdint.h -include $*.h
